@@ -1,0 +1,35 @@
+{
+    "name": "pharaonic/laravel-user-devices",
+    "description": "A package that allows you to manage the different devices per a single user.",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Pharaonic\\Laravel\\Devices\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "omarpero",
+            "email": "omarpero85@gmail.com"
+        },
+        {
+            "name": "Moamen Eltouny (Raggi)",
+            "email": "support@raggitech.com"
+        }
+    ],
+    "require": {
+        "pharaonic/laravel-agents-detector": "^1.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pharaonic\\Laravel\\Devices\\DevicesServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
