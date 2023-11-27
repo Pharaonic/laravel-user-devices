@@ -29,7 +29,7 @@ class CreateUserDevicesTable extends Migration
             
             // Relationships
             $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
-            $table->foreign('auth_token_id')->references('id')->on('personal_access_tokens')->onDelete('null');
+            $table->foreign('auth_token_id')->references('id')->on('personal_access_tokens')->onDelete('set null');
 
         });
     }
