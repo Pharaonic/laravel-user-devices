@@ -17,7 +17,8 @@ class CreateUserDevicesTable extends Migration
             $table->string('signature');
             $table->foreignId('agent_id');
             $table->unique(['user_id', 'user_type', 'signature', 'agent_id']);
-
+            $table->unsignedBigInteger('auth_token_id')->nullable();
+            
             $table->string('ip');
             $table->string('fcm_token')->nullable();
             $table->json('data')->nullable();
@@ -28,6 +29,8 @@ class CreateUserDevicesTable extends Migration
             
             // Relationships
             $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
+            $table->foreign('auth_token_id')->references('id')->on('personal_access_tokens')->onDelete('null');
+
         });
     }
 
