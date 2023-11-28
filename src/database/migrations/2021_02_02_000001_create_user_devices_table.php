@@ -16,21 +16,23 @@ class CreateUserDevicesTable extends Migration
             $table->morphs('user');
             $table->string('signature');
             $table->foreignId('agent_id');
-            $table->unique(['user_id', 'user_type', 'signature', 'agent_id']);
-            $table->unsignedBigInteger('auth_token_id')->nullable();
-            
+            $table->foreignId('token_id')->nullable();
+            $table->unique(['user_id', 'user_type', 'signature', 'agent_id', 'token_id']);
+
             $table->string('ip');
-            $table->string('fcm_token')->nullable();
+            $table->string('fcm')->nullable();
             $table->json('data')->nullable();
-            $table->boolean('is_primary')->default(false);
-            $table->boolean('logged_out')->default(true);
+            $table->boolean('is_primary')->default(false)->index();
+            $table->boolean('logged_out')->default(false);
             $table->timestamp('last_action_at');
             $table->timestamps();
-            
+
             // Relationships
             $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
-            $table->foreign('auth_token_id')->references('id')->on('personal_access_tokens')->onDelete('set null');
 
+            if (Schema::hasTable('personal_access_tokens')) {
+                $table->foreign('token_id')->references('id')->on('personal_access_tokens')->onDelete('set null');
+            }
         });
     }
 
@@ -41,4 +43,5 @@ class CreateUserDevicesTable extends Migration
     {
         Schema::dropIfExists('user_devices');
     }
-};
+}
+;
