@@ -17,7 +17,7 @@ class CreateUserDevicesTable extends Migration
             $table->string('signature');
             $table->foreignId('agent_id');
             $table->foreignId('token_id')->nullable();
-            $table->unique(['user_id', 'user_type', 'signature', 'agent_id', 'token_id']);
+            $table->unique(['user_id', 'user_type', 'signature', 'agent_id', 'token_id'], 'UTSAT');
 
             $table->string('ip');
             $table->string('fcm')->nullable();
