@@ -68,7 +68,7 @@ trait HasDevices
      * @param array|null $data
      * @return UserDevice
      */
-    public function addDevice(string $fcm = null, bool $is_primary = false, array $data = null)
+    public function addDevice(string $fcm = null, bool $is_primary = false, array $data = null, int $token_id = null)
     {
         if (!($signature = getCurrentDeviceSignature())) {
             $signature = Str::uuid() . '-' . Str::random();
@@ -82,6 +82,7 @@ trait HasDevices
         ], [
             'agent_id' => agent()->id,
             'fcm_token' => $fcm,
+            'token_id' => $token_id,
             'is_primary' => $is_primary,
             'data' => $data,
             'ip' => agent()->ip,
