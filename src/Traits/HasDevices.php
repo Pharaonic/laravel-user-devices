@@ -66,9 +66,10 @@ trait HasDevices
      * @param string|null $fcm
      * @param bool $is_primary
      * @param array|null $data
+     * @param mixed|null $token_id
      * @return UserDevice
      */
-    public function addDevice(string $fcm = null, bool $is_primary = false, array $data = null, int $token_id = null)
+    public function addDevice(string $fcm = null, bool $is_primary = false, array $data = null, mixed $token_id = null)
     {
         if (!($signature = getCurrentDeviceSignature())) {
             $signature = Str::uuid() . '-' . Str::random();

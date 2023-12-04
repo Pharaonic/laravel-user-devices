@@ -34,8 +34,8 @@ class UserDevice extends Model
     protected $fillable = [
         'agent_id',
         'signature',
-        'token_id',
         'fcm_token',
+        'token_id',
         'ip',
         'user_id',
         'user_type',
