@@ -15,6 +15,7 @@ use Pharaonic\Laravel\Agents\Models\Agent;
  * @property boolean $is_primary
  * @property boolean $logged_out
  * @property string|null $fcm_token
+ * @property integer|null $token_id
  * @property Carbon $last_action_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
