@@ -20,7 +20,7 @@ class CreateUserDevicesTable extends Migration
             $table->unique(['user_id', 'user_type', 'signature', 'agent_id', 'token_id'], 'UTSAT');
 
             $table->string('ip');
-            $table->string('fcm')->nullable();
+            $table->string('fcm_token')->nullable();
             $table->json('data')->nullable();
             $table->boolean('is_primary')->default(false)->index();
             $table->boolean('logged_out')->default(false);
@@ -43,5 +43,4 @@ class CreateUserDevicesTable extends Migration
     {
         Schema::dropIfExists('user_devices');
     }
-}
-;
+};
