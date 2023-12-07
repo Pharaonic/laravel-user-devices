@@ -4,7 +4,6 @@ namespace Pharaonic\Laravel\Devices\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Pharaonic\Laravel\Agents\Models\Agent;
 use Pharaonic\Laravel\Devices\Models\UserDevice;
 
 
