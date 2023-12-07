@@ -90,7 +90,13 @@ class UserDevice extends Model
      */
     public function refresh()
     {
-        return $this->update(['last_action_at' => now()]);
+        $data = ['last_action_at' => now()];
+
+        if ($this->ip == request()->ip()) {
+            $data['ip'] = request()->ip();
+        }
+
+        return $this->update($data);
     }
 
     /**
