@@ -4,6 +4,7 @@ namespace Pharaonic\Laravel\Devices\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\PersonalAccessToken;
 use Pharaonic\Laravel\Agents\Models\Agent;
 
 /**
@@ -75,6 +76,14 @@ class UserDevice extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function token()
+    {
+        return $this->belongsTo(PersonalAccessToken::class, 'token_id');
+    }
+
+    /**
      * Refresh LAST-ACTION-AT
      *
      * @return boolean
@@ -91,6 +100,10 @@ class UserDevice extends Model
      */
     public function logout()
     {
+        if ($this->token_id) {
+            $this->token()->delete();
+        }
+        
         return $this->update(['logged_out' => true]);
     }
 
