@@ -2,7 +2,6 @@
 
 namespace Pharaonic\Laravel\Devices\Traits;
 
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Pharaonic\Laravel\Devices\Models\UserDevice;
 
@@ -86,7 +85,7 @@ trait HasDevices
             'is_primary' => $is_primary,
             'data' => $data,
             'ip' => agent()->ip,
-            'last_action_at' => Carbon::now()
+            'last_action_at' => now()
         ]);
     }
 
