@@ -19,7 +19,7 @@ trait HasDevices
         return $this->morphMany(UserDevice::class, 'user');
     }
 
-   /**
+    /**
      * Collection Of User Devices With Agents
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -72,8 +72,11 @@ trait HasDevices
         if (!($signature = getCurrentDeviceSignature())) {
             $signature = Str::uuid() . '-' . Str::random();
 
-            if (session()->isStarted())
+            if (session()->isStarted()) {
                 session()->put('X-DEVICE-SIGNATURE', $signature);
+            } else {
+                request()->headers->set('X-DEVICE-SIGNATURE', $signature);
+            }
         }
 
         return $this->devices()->updateOrCreate([
