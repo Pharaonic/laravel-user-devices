@@ -7,7 +7,7 @@ if (!function_exists('getCurrentDeviceSignature')) {
             session()->isStarted() ?
                 session()->get('X-DEVICE-SIGNATURE') :
                 request()->headers->get('X-DEVICE-SIGNATURE'),
-            "\s"
+            ' '
         );
 
         return !empty($signature) ? $signature : null;
