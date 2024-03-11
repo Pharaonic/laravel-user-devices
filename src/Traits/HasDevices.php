@@ -38,7 +38,6 @@ trait HasDevices
     public function getFcmListArrtibute()
     {
         $list = $this->devices()->whereNotNull('fcm_token')->where('logged_out', false)->get();
-
         if ($list->isEmpty())
             return null;
 
@@ -144,7 +143,7 @@ trait HasDevices
      */
     public function getCurrentDeviceWithAgentAttribute()
     {
-        if (!($device = $this->CurrentDevice()))
+        if (!($device = $this->currentDevice))
             return null;
 
         $device->load(['agent.operationSystem', 'agent.browser', 'agent.device']);
