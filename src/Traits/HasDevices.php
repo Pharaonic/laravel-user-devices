@@ -35,13 +35,9 @@ trait HasDevices
      *
      * @return array|null
      */
-    public function getFcmListArrtibute()
+    public function getFcmListAttribute()
     {
-        $list = $this->devices()->whereNotNull('fcm_token')->where('logged_out', false)->get();
-        if ($list->isEmpty())
-            return null;
-
-        return $list->pluck('fcm_token')->toArray();
+        return $this->devices()->whereNotNull('fcm_token')->where('logged_out', false)->pluck('fcm_token')->toArray();
     }
 
     /**
